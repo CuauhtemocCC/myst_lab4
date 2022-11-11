@@ -160,3 +160,106 @@ def microestructura(inst,limite,t,exc):
     
     return tabla
 
+def spread_cut(me,CPs,exchl,inst):
+    me2 = me
+    for i in range(len(me2["timestamp"])):
+        me2.iloc[i,11] = me2.iloc[i,2][0:16]
+    
+    cp1 = me2[(me2["exchange"] == exchl[0]) & (me2["symbol"] == inst[0])]
+    cp1 = cp1.drop_duplicates(subset=['timestamp2'])
+    cp1 = cp1.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp1 = cp1.set_index("timestamp2")
+    cp2 = me2[(me2["exchange"] == exchl[0]) & (me2["symbol"] == inst[1])]
+    cp2 = cp2.drop_duplicates(subset=['timestamp2'])
+    cp2 = cp2.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp2 = cp2.set_index("timestamp2")
+    cp3 = me2[(me2["exchange"] == exchl[0]) & (me2["symbol"] == inst[2])]
+    cp3 = cp3.drop_duplicates(subset=['timestamp2'])
+    cp3 = cp3.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp3 = cp3.set_index("timestamp2")
+    cp4 = me2[(me2["exchange"] == exchl[1]) & (me2["symbol"] == inst[0])]
+    cp4 = cp4.drop_duplicates(subset=['timestamp2'])
+    cp4 = cp4.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp4 = cp4.set_index("timestamp2")
+    cp5 = me2[(me2["exchange"] == exchl[1]) & (me2["symbol"] == inst[1])]
+    cp5 = cp5.drop_duplicates(subset=['timestamp2'])
+    cp5 = cp5.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp5 = cp5.set_index("timestamp2")
+    cp6 = me2[(me2["exchange"] == exchl[1]) & (me2["symbol"] == inst[2])]
+    cp6 = cp6.drop_duplicates(subset=['timestamp2'])
+    cp6 = cp6.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp6 = cp6.set_index("timestamp2")
+    cp7 = me2[(me2["exchange"] == exchl[2]) & (me2["symbol"] == inst[0])]
+    cp7 = cp7.drop_duplicates(subset=['timestamp2'])
+    cp7 = cp7.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp7 = cp7.set_index("timestamp2")
+    cp8 = me2[(me2["exchange"] == exchl[2]) & (me2["symbol"] == inst[1])]
+    cp8 = cp8.drop_duplicates(subset=['timestamp2'])
+    cp8 = cp8.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp8 = cp8.set_index("timestamp2")
+    cp9 = me2[(me2["exchange"] == exchl[2]) & (me2["symbol"] == inst[2])]
+    cp9 = cp9.drop_duplicates(subset=['timestamp2'])
+    cp9 = cp9.drop(['timestamp','milliseconds','level','ask_volume','bid_volume','total_volume','mid_price','VWAP'],axis=1)
+    cp9 = cp9.set_index("timestamp2")
+    
+    CPs2 = CPs
+    dif = 6*3600*1000
+    
+    for i in range(len(CPs2.iloc[:,0])):
+        CPs2.iloc[i,0] = CPs2.iloc[i,0]+dif
+        CPs2.iloc[i,10] = str(datetime.fromtimestamp(CPs2.iloc[i,0]//1000).isoformat())
+        CPs2.iloc[i,10] = CPs2.iloc[i,10][0:16]
+
+    CPs2 = CPs2.set_index("timestamp2")
+    CPs2 = CPs2.drop(['milliseconds'],axis=1)
+    
+    cl1 = pd.DataFrame(CPs2.iloc[:,0],CPs2.index)
+    cl2 = pd.DataFrame(CPs2.iloc[:,1],CPs2.index)
+    cl3 = pd.DataFrame(CPs2.iloc[:,2],CPs2.index)
+    cl4 = pd.DataFrame(CPs2.iloc[:,3],CPs2.index)
+    cl5 = pd.DataFrame(CPs2.iloc[:,4],CPs2.index)
+    cl6 = pd.DataFrame(CPs2.iloc[:,5],CPs2.index)
+    cl7 = pd.DataFrame(CPs2.iloc[:,6],CPs2.index)
+    cl8 = pd.DataFrame(CPs2.iloc[:,7],CPs2.index)
+    cl9 = pd.DataFrame(CPs2.iloc[:,8],CPs2.index)
+    
+    jcp1 = cp1.join(cl1)
+    jcp1 = jcp1[jcp1.Spread.notnull()]
+    jcp1 = jcp1.drop(['exchange','symbol'],axis=1)
+    jcp2 = cp2.join(cl2)
+    jcp2 = jcp2[jcp2.Spread.notnull()]
+    jcp2 = jcp2.drop(['exchange','symbol'],axis=1)
+    jcp3 = cp3.join(cl3)
+    jcp3 = jcp3[jcp3.Spread.notnull()]
+    jcp3 = jcp3.drop(['exchange','symbol'],axis=1)
+    jcp4 = cp4.join(cl4)
+    jcp4 = jcp4[jcp4.Spread.notnull()]
+    jcp4 = jcp4.drop(['exchange','symbol'],axis=1)
+    jcp5 = cp5.join(cl5)
+    jcp5 = jcp5[jcp5.Spread.notnull()]
+    jcp5 = jcp5.drop(['exchange','symbol'],axis=1)
+    jcp6 = cp6.join(cl6)
+    jcp6 = jcp6[jcp6.Spread.notnull()]
+    jcp6 = jcp6.drop(['exchange','symbol'],axis=1)
+    jcp7 = cp7.join(cl7)
+    jcp7 = jcp7[jcp7.Spread.notnull()]
+    jcp7 = jcp7.drop(['exchange','symbol'],axis=1)
+    jcp8 = cp8.join(cl8)
+    jcp8 = jcp8[jcp8.Spread.notnull()]
+    jcp8 = jcp8.drop(['exchange','symbol'],axis=1)
+    jcp9 = cp9.join(cl9)
+    jcp9 = jcp9[jcp9.Spread.notnull()]
+    jcp9 = jcp9.drop(['exchange','symbol'],axis=1)
+    
+    joins = []
+    joins.append(jcp1)
+    joins.append(jcp2)
+    joins.append(jcp3)
+    joins.append(jcp4)
+    joins.append(jcp5)
+    joins.append(jcp6)
+    joins.append(jcp7)
+    joins.append(jcp8)
+    joins.append(jcp9)
+    
+    return joins

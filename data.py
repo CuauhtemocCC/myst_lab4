@@ -21,5 +21,7 @@ exchl = ['Bitso','Gate','Okcoin']
 me = fn.microestructura(inst,50,120,exc)
 
 # Close prices 
-#CPs = close_prices(inst,30,exc)
+CPs = fn.close_prices(inst,30,exc)
 
+# Tablas Spreads
+ppp = fn.spread_cut(me,CPs,exchl,inst)
