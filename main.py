@@ -1,7 +1,9 @@
 # python script with the main functionality
+import visualizations as vs
+import data as dt
 
 # Consumir datos de CCXT y visualización de microestructura.
 
 
 # Modelado de Microestructura
-grafos(me)
+vs.grafos(dt.me)
