@@ -263,3 +263,45 @@ def spread_cut(me,CPs,exchl,inst):
     joins.append(jcp9)
     
     return joins
+
+def EffectiveSpread(me3):
+
+    inst = ['ETH/USD','SOL/USD','BTC/USD']
+    exch = ['Bitso', 'Gate', 'Okcoin']
+
+    lista_activos = []
+
+    for i in range(3):
+
+        for j in range(3):
+
+            lista_es = []
+            cp1 = me3[(me3["exchange"] == exch[i]) & (me3["symbol"] == inst[j])]
+            fechas_es = cp1.timestamp2.unique()
+
+            for k in range(len(fechas_es)):
+
+                cp1 = cp1[(cp1["timestamp2"] == fechas_es[k])]
+
+                cp1["Pt"] = cp1.iloc[:,9].shift() - cp1.iloc[:,9]
+                cp1["Pt"] = cp1["Pt"].fillna(0)
+                cp1["Pt-5"] = cp1.iloc[:,9].shift(5) - cp1.iloc[:,9].shift(4)
+                cp1["Pt-5"] = cp1["Pt-5"].fillna(0)
+
+                cov = np.abs(np.cov(cp1["Pt"],cp1["Pt-5"]))
+                cov_value = cov[0][1]
+                es = np.sqrt(cov_value)*2
+                lista_es.append(es)
+                cp1 = me3[(me3["exchange"] == exch[i]) & (me3["symbol"] == inst[j])]
+
+            lista_activos.append(lista_es)
+
+    return lista_activos
+
+def ESR(ppp, es):
+    lista_act2 = []
+    for i in range(9):
+        ppp[i]["Effective"] = es[i]
+        num = ppp[i]
+        lista_act2.append(num)
+    return lista_act2
