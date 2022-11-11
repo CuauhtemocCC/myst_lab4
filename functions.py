@@ -91,7 +91,7 @@ def close_prices(inst,limite,exc):
 
     return CPs
 
-def microestructura(inst,limite,t,exc):
+def microestructura(inst,limite,t,exc,exchl):
     vv = OB(inst,limite,t,exc)
     sy = []
     ss = []

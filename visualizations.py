@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 
-def grafos(tabla):
+def grafos(tabla,exchl):
     #tabla = microestructura_tabla
     fig = make_subplots(
         rows=3,cols=3,shared_xaxes=True,vertical_spacing=0.02,shared_yaxes=True,horizontal_spacing=0.02)
