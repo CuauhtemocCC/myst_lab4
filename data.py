@@ -1,12 +1,25 @@
+# python script for data collection
 
-"""
-# -- --------------------------------------------------------------------------------------------------- -- #
-# -- project: A SHORT DESCRIPTION OF THE PROJECT                                                         -- #
-# -- script: data.py : python script for data collection                                                 -- #
-# -- author: YOUR GITHUB USER NAME                                                                       -- #
-# -- license: THE LICENSE TYPE AS STATED IN THE REPOSITORY                                               -- #
-# -- repository: YOUR REPOSITORY URL                                                                     -- #
-# -- --------------------------------------------------------------------------------------------------- -- #
-"""
+import functions as fn
+import ccxt
+import pandas as pd 
+import numpy as np
 
-dict_test = {'key_a': 'a', 'key_b': 'b'}
+# Exchanges
+
+#bitstamp = ccxt.bitstamp()
+bitso = ccxt.bitso()
+#alpaca = ccxt.alpaca()
+#ascendex = ccxt.ascendex()
+okcoin = ccxt.okcoin()
+gate = ccxt.gate()
+exc = [bitso,gate,okcoin]
+inst = ['ETH/USD','SOL/USD','BTC/USD']
+exchl = ['Bitso','Gate','Okcoin']
+
+# Microestructura
+me = fn.microestructura(inst,50,120,exc)
+
+# Close prices 
+#CPs = close_prices(inst,30,exc)
+

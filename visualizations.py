@@ -1,10 +1,6 @@
+# python script with data visualization functions
 
-"""
-# -- --------------------------------------------------------------------------------------------------- -- #
-# -- project: A SHORT DESCRIPTION OF THE PROJECT                                                         -- #
-# -- script: visualizations.py : python script with data visualization functions                         -- #
-# -- author: YOUR GITHUB USER NAME                                                                       -- #
-# -- license: THE LICENSE TYPE AS STATED IN THE REPOSITORY                                               -- #
-# -- repository: YOUR REPOSITORY URL                                                                     -- #
-# -- --------------------------------------------------------------------------------------------------- -- #
-"""
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+
