@@ -305,3 +305,22 @@ def ESR(ppp, es):
         num = ppp[i]
         lista_act2.append(num)
     return lista_act2
+
+def Salidas(lista):
+    SSS = []
+    Salida_B1 = lista[0][['CP ETH/USD Bitso','Spread','Effective']]
+    Salida_B2 = lista[1][['CP SOL/USD Bitso','Spread','Effective']]
+    Salida_B3 = lista[2][['CP BTC/USD Bitso','Spread','Effective']]
+    Salida_B4 = lista[3][['CP ETH/USD Gate.io','Spread','Effective']]
+    Salida_B5 = lista[4][['CP SOL/USD Gate.io','Spread','Effective']]
+    Salida_B6 = lista[5][['CP BTC/USD Gate.io','Spread','Effective']]
+    Salida_B7 = lista[6][['CP ETH/USD OKCoin','Spread','Effective']]
+    Salida_B8 = lista[7][['CP SOL/USD OKCoin','Spread','Effective']]
+    Salida_B9 = lista[8][['CP BTC/USD OKCoin','Spread','Effective']]
+    S1 = pd.concat([Salida_B1,Salida_B4,Salida_B7],axis=1)
+    S2 = pd.concat([Salida_B2,Salida_B5,Salida_B8],axis=1)
+    S3 = pd.concat([Salida_B3,Salida_B6,Salida_B9],axis=1)
+    SSS.append(S1)
+    SSS.append(S2)
+    SSS.append(S3)
+    return SSS
