@@ -13,7 +13,7 @@ me = fn.microestructura(dt.inst,50,120,dt.exc,dt.exchl)
 CPs = fn.close_prices(dt.inst,70,dt.exc)
 
 # Modelado de Microestructura
-vs.grafos(dt.me,dt.exchl)
+# vs.grafos(me,dt.exchl)
 
 # Tablas Spreads
 ppp = fn.spread_cut(me,CPs,dt.exchl,dt.inst)

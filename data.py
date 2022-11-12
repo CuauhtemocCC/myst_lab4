@@ -1,6 +1,5 @@
 # python script for data collection
 
-import functions as fn
 import ccxt
 import pandas as pd 
 import numpy as np
