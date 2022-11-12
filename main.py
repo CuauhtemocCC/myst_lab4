@@ -7,10 +7,10 @@ import data as dt
 # Consumir datos de CCXT y visualización de microestructura.
 
 # Microestructura
-me = fn.microestructura(dt.inst,50,120,dt.exc,dt.exchl)
+me = fn.microestructura(dt.inst,50,3600,dt.exc,dt.exchl)
 
 # Close prices 
-CPs = fn.close_prices(dt.inst,70,dt.exc)
+CPs = fn.close_prices(dt.inst,90,dt.exc)
 
 # Modelado de Microestructura
 # vs.grafos(me,dt.exchl)
