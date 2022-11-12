@@ -10,7 +10,7 @@ import data as dt
 me = fn.microestructura(dt.inst,50,120,dt.exc,dt.exchl)
 
 # Close prices 
-CPs = fn.close_prices(dt.inst,30,dt.exc)
+CPs = fn.close_prices(dt.inst,70,dt.exc)
 
 # Modelado de Microestructura
 vs.grafos(dt.me,dt.exchl)
@@ -23,5 +23,5 @@ es = fn.EffectiveSpread(me)
 
 # Resultados finales
 FTable = fn.ESR(ppp, es)
-Salidas = fn.Salidas(FTable)
+Resultados = fn.Salidas(FTable)
 
