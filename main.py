@@ -1,5 +1,6 @@
 # python script with the main functionality
 import visualizations as vs
+import pandas as pd
 import functions as fn
 import data as dt
 
@@ -20,14 +21,7 @@ ppp = fn.spread_cut(me,CPs,dt.exchl,dt.inst)
 # Calculo de Effective Spread
 es = fn.EffectiveSpread(me)
 
-Salidas = fn.ESR(ppp, es)
+# Resultados finales
+FTable = fn.ESR(ppp, es)
+Salidas = fn.Salidas(FTable)
 
-Salida_B1 = Salidas[0]
-Salida_B2 = Salidas[1]
-Salida_B3 = Salidas[2]
-Salida_G1 = Salidas[3]
-Salida_G2 = Salidas[4]
-Salida_G3 = Salidas[5]
-Salida_O1 = Salidas[6]
-Salida_O2 = Salidas[7]
-Salida_O3 = Salidas[8]
